@@ -1,0 +1,11 @@
+{	"name": "Convert California Perimeter",
+    "image": "dotysan/python-gis:latest",
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+            ]
+        }
+    }
+}
