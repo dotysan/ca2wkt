@@ -34,7 +34,16 @@ def main() -> None:
         transformer = Transformer.from_crs('EPSG:3857', 'EPSG:4326', always_xy=True)
         latlon_geometry = transform(transformer.transform, simple)
 
-        print(wkt.dumps(latlon_geometry, rounding_precision=1))
+        ca_wkt = wkt.dumps(latlon_geometry, rounding_precision=1)
+        print(ca_wkt)
+
+        ca_geom = wkt.loads(ca_wkt)
+        coords = list(map(list, ca_geom.exterior.coords))
+        arcgis_geom = {
+            'rings': [coords],
+            'spatialReference': {'wkid': 4326}  # Use EPSG:4326 for WGS84 Lat/Lon
+        }
+        print(arcgis_geom)
 
 
 def get_data() -> None:
